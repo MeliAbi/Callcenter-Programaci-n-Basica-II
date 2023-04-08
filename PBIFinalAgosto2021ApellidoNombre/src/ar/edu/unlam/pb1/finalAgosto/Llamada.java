@@ -8,9 +8,9 @@ public class Llamada {
 	public Llamada(boolean fueExitosa, String observaciones) {
 		this.setFueExitosa(fueExitosa);
 		this.setObservaciones(observaciones);
-	}
+	} //constructor
 
-	public boolean isFueExitosa() {
+	public boolean isFueExitosa() { //get
 		return fueExitosa;
 	}
 

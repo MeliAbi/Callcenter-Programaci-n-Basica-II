@@ -22,6 +22,7 @@ public class Empresa {
 	
 		/*
 		 * Incorpora un nuevo contacto a la empresa
+		 * Comentario pruebita
 		 */
 		
 		return false;

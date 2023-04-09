@@ -5,13 +5,17 @@ public class Empresa {
 	/*
 	 * Se deben incorporar los atributos necesarios.
 	 */
+	private String nombre = "";
+	private int cobertura [];
+	
+	public Empresa(String nombre) {
+		this.nombre = nombre;
+		cobertura = new int [2];
+	}
 	
 	public String getNombreEmpresa() {
-		/*
-		 * Devuelve el nombre de la empresa
-		 */
 		
-		return "";
+		return this.nombre;
 	}
 	
 	public boolean agregarNuevoContacto(Contacto nuevo) {
@@ -27,24 +31,32 @@ public class Empresa {
 		/*
 		 * Incorpora una nueva zona de cobertura (Las zonas de cobertura se identifican por el codigo postal)
 		 */
+		boolean seAgrego=false;
 		
-		return false;
+		for(int i=0; i<cobertura.length; i++) {
+			if(cobertura[i]==0 && seAgrego == false) {
+				cobertura[i]=codigoPostal;
+				seAgrego = true;
+			}
+		}
+		
+		return seAgrego;
 	}	
 	
 	private boolean elCodigoPostalEstaDentroDeLaZonaDeCobertura(int codigoPostal) {
 		/*
-		 * Determina si un código postal está dentro de la zona de cobertura
+		 * Determina si un cï¿½digo postal estï¿½ dentro de la zona de cobertura
 		 */
 		return false;
 	}
 	
 	public Contacto buscarCandidato() {
 		/*
-		 * Para determinar qué contacto el sistema debe mostrar, se debe realizar la siguiente búsqueda:
-		 * 1.	El contacto NO debe ser cliente aún.
-		 * 2.	El contacto desea ser llamado o al menos no informó lo contrario.
-		 * 3.	El código postal del contacto debe existir en las zonas de cobertura existente.
-		 * 4.	Del conjunto de contactos resultante se debe seleccionar aleatoriamente el próximo llamado.
+		 * Para determinar quï¿½ contacto el sistema debe mostrar, se debe realizar la siguiente bï¿½squeda:
+		 * 1.	El contacto NO debe ser cliente aï¿½n.
+		 * 2.	El contacto desea ser llamado o al menos no informï¿½ lo contrario.
+		 * 3.	El cï¿½digo postal del contacto debe existir en las zonas de cobertura existente.
+		 * 4.	Del conjunto de contactos resultante se debe seleccionar aleatoriamente el prï¿½ximo llamado.
 		 */
 
 		return null;

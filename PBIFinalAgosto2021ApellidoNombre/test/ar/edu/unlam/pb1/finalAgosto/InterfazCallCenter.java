@@ -1,11 +1,43 @@
 package ar.edu.unlam.pb1.finalAgosto;
 
+
+import java.util.Scanner;
+
 public class InterfazCallCenter {
+	final static int INCORPORAR = 1, DAR_ALTA = 2, NUEVA_LLAMADA = 3, VER_INFO = 4, SALIR = 9;
 	
 	public static void main(String args[]) {
-			
+		
+		Scanner teclado = new Scanner(System.in);
+		Empresa nuevaEmpresa = new Empresa("Doofenshmirtz Malvados y Asociados");
+		int opcion=0;
+		
 		System.out.println("Bienvenido al callcenter");
-	
+		do {
+			menu();
+			opcion = teclado.nextInt();
+			switch (opcion){
+			case INCORPORAR:
+				incorporarZonaDeCobertura(teclado,nuevaEmpresa);
+				break;
+			case DAR_ALTA:
+				break;
+			case NUEVA_LLAMADA:
+				break;
+			case VER_INFO:
+				break;
+			case SALIR:
+				System.out.println("Fin del programa");
+				break;
+			default: 
+				System.out.println("Opcion incorrecta");
+				break;
+			}
+		}while(opcion!=SALIR);
+			
+	}
+
+	private static void menu() {
 		System.out.println("************************");
 		System.out.println("Menu de opciones\n");
 		System.out.println("1 - Incorporar zona de cobertura");
@@ -14,13 +46,25 @@ public class InterfazCallCenter {
 		System.out.println("4 - Ver informaci�n del contacto");
 		System.out.println("9 - Salir");
 		System.out.println("************************");
-		//sarasaaaaaaaaaaaa
 	}
 	
-	private static void incorporarZonaDeCobertura() {
+	private static void incorporarZonaDeCobertura(Scanner teclado, Empresa nueva) {
 		/*
 		 * Se registra un nuevo c�digo postal dentro de la zona de cobertura de la empresa
 		 */
+		int codPost = 0;
+		
+		System.out.println("**********************");
+		System.out.println("Ingrese codigo postal: ");
+		System.out.println("**********************");
+		
+		codPost = teclado.nextInt();
+		
+		if(nueva.agregarNuevaZonaDeCobertura(codPost)== false) {
+			System.out.println("!!!!!!!!!!!!!!!");
+			System.out.println("Cobertura llena");
+			System.out.println("!!!!!!!!!!!!!!!");
+		}
 	}
 	
 	private static void darDeAltaNuevoContacto() {

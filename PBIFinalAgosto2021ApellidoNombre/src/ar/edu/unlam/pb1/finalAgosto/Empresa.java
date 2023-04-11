@@ -7,10 +7,12 @@ public class Empresa {
 	 */
 	private String nombre = "";
 	private int cobertura [];
+	private Contacto contactosRegistrados[];
 	
 	public Empresa(String nombre) {
 		this.nombre = nombre;
 		cobertura = new int [2];
+		contactosRegistrados= new Contacto [3];
 	}
 	
 	public String getNombreEmpresa() {
@@ -23,7 +25,16 @@ public class Empresa {
 		/*
 		 * Incorpora un nuevo contacto a la empresa
 		 * Comentario pruebita
+		 * 
 		 */
+		boolean seAgrego=false;
+		
+		for(int i=0; i<contactosRegistrados.length; i++) {
+			if(contactosRegistrados[i]==null && seAgrego == false) {
+				contactosRegistrados[i]=nuevo;
+				seAgrego = true;
+			}
+		}
 		
 		return false;
 	}

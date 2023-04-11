@@ -5,21 +5,66 @@ public class Contacto {
 	/*
 	 * Se deben incorporar los atributos necesarios.
 	 * 
-	 * •	Nombre y Apellido: No se aceptan números.
-	 * •	Celular: Compuesto del código de país + código de área + número de celular.
-	 * •	E-Mail: Debe contener al menos el símbolo ‘@’ y el caracter ‘.’.
-	 * •	Dirección: Valor alfanumérico.
-	 * •	Código Postal: Valor numérico.
-	 * •	Localidad: Valor alfanumérico.
-	 * •	Provincia. Enumerador que contenga las 23 provincias argentinas.
-	 * •	Es cliente (Si o No): Inicialmente se carga en “No”.
-	 * •	Desea ser llamado nuevamente (Si o No): Inicialmente se carga en “Si”.
+	 * ï¿½	Nombre y Apellido: No se aceptan nï¿½meros. 
+	 * ï¿½	Celular: Compuesto del cï¿½digo de paï¿½s + cï¿½digo de ï¿½rea + nï¿½mero de celular.
+	 * ï¿½	E-Mail: Debe contener al menos el sï¿½mbolo ï¿½@ï¿½ y el caracter ï¿½.ï¿½.
+	 * ï¿½	Direcciï¿½n: Valor alfanumï¿½rico.
+	 * ï¿½	Cï¿½digo Postal: Valor numï¿½rico.
+	 * ï¿½	Localidad: Valor alfanumï¿½rico.
+	 * ï¿½	Provincia. Enumerador que contenga las 23 provincias argentinas.
+	 * ï¿½	Es cliente (Si o No): Inicialmente se carga en ï¿½Noï¿½.
+	 * ï¿½	Desea ser llamado nuevamente (Si o No): Inicialmente se carga en ï¿½Siï¿½.
 	 */
+	String nombre;
+	String apellido;
+	String email;
+	String direccion;
+	double celular;
+	int codigoPostal;
+	String localidad;
+	Provincia provincia;
+	boolean cliente;
+	boolean deseaSerLlamadoNuevamente;
 	
-	public void esEmailValido(String eMail) {
+	
+	public Contacto(String nombre, String apellido, double celular, String email, int codigoPostal,
+			String localidad, Provincia provincia) {
+		this.nombre=nombre;
+		this.apellido=apellido;
+		this.celular=celular;
+		this.email=email;
+		this.codigoPostal=codigoPostal;
+		this.localidad=localidad;
+		this.provincia=provincia;
+		cliente=false;
+		deseaSerLlamadoNuevamente=true;
+	}
+	/*public boolean verificarNombreCorrecto (String nombre){
+		for con char at y que no tome como vÃ¡lidos los ascii diferentes a caracteres de letras
+			}*/
+	
+	public boolean esEmailValido(String email) {
 		/*
-		 * Evalúa si un String determinado puede ser almacenado como E-MAIL.
+		 * Evalï¿½a si un String determinado puede ser almacenado como E-MAIL.
+		 * 
 		 */
+		boolean emailValido=false;
+		boolean contieneArroba=false;
+		boolean contienePunto=false;
+		
+		for (int i=0; i<email.length();i++) {
+			if (email.charAt(i)==64) {
+				contieneArroba=true;
+			}
+			if (email.charAt(i)==46) {
+				contienePunto=true;
+			}
+		}
+		
+		if (contienePunto==true&&contieneArroba==true) {
+			 emailValido=true;
+		}
+		return emailValido;
 	}
 	
 	public boolean registrarNuevaLlamada(Llamada nueva) {
@@ -28,13 +73,22 @@ public class Contacto {
 		 */
 		return false;
 	}
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	public String toString() {
 		/*
 		 * Muestra los datos de un contacto, entre los que se debe incluir el registro de las llamadas realizadas.
-		 */
-		
-		return "";
+		*/
+
+		return "Email: "+this.email;
 	}
+
+	
 	
 }

@@ -21,6 +21,7 @@ public class InterfazCallCenter {
 				incorporarZonaDeCobertura(teclado,nuevaEmpresa);
 				break;
 			case DAR_ALTA:
+				darDeAltaNuevoContacto(teclado, nuevaEmpresa);
 				break;
 			case NUEVA_LLAMADA:
 				break;
@@ -67,10 +68,83 @@ public class InterfazCallCenter {
 		}
 	}
 	
-	private static void darDeAltaNuevoContacto() {
+	private static void darDeAltaNuevoContacto(Scanner teclado, Empresa nuevaEmpresa) {
 		/*
 		 * Registra un nuevo contacto en la empresa
 		 */
+		String nombre="";
+		String apellido="";
+		String email="";
+		String direccion="";
+		double celular=0;
+		int codigoPostal=0;
+		String localidad="";
+		int provinciaElegida=0;
+		Provincia provincia=null;
+		Contacto nuevo=null;
+		
+		System.out.println("Ingrese el Nombre:");
+		nombre=teclado.next();
+		System.out.println("Ingrese el Apellido:");
+		apellido= teclado.next();
+		System.out.println("Ingrese el Numero de Telefono:");
+		celular=teclado.nextDouble();
+		System.out.println("Ingrese el Email: (debe contener @ y .)");
+		email=teclado.next();
+		System.out.println("Ingrese el Codigo Postal:");
+		codigoPostal=teclado.nextInt();
+		System.out.println("Ingrese la Localidad:");
+		localidad=teclado.next();
+		System.out.println("Ingrese la Provincia:");
+		mostrarProvincias();
+		provinciaElegida=teclado.nextInt();
+		provincia=Provincia.values()[provinciaElegida-1];
+		
+		nuevo=new Contacto(nombre,apellido,celular,email,codigoPostal,localidad,provincia);
+		
+		if (nuevo.esEmailValido(email)==true) {
+			nuevaEmpresa.agregarNuevoContacto(nuevo);
+			System.out.println("Registrado con éxito.");
+			/////
+		}else {
+			System.out.println("Contacto no registrado, vuelva a ingresar el Email.");
+			
+			do{
+			System.out.println("Ingrese el Email: (debe contener @ y .)");
+			email=teclado.next();
+			}while (nuevo.esEmailValido(email)==false);
+			
+			nuevo.setEmail(email);
+			nuevaEmpresa.agregarNuevoContacto(nuevo);
+		}
+		
+		
+	}
+	private static void mostrarProvincias() {
+		System.out.println("1- BUENOS_AIRES");
+		System.out.println("2- CABA");	
+		System.out.println("CATAMARCA");		
+		System.out.println("CHACO");		
+		System.out.println("CHUBUT");		
+		System.out.println("CORDOBA");	
+		System.out.println("CORRIENTES");		
+		System.out.println("ENTRE_RIOS");		
+		System.out.println("FORMOSA");		
+		System.out.println("JUJUY");		
+		System.out.println("LA_PAMPA");		
+		System.out.println("LA_RIOJA");		
+		System.out.println("MENDOZA");		
+		System.out.println("MISIONES");		
+		System.out.println("NEUQUEN");		
+		System.out.println("RIO_NEGRO");		
+		System.out.println("SALTA");		
+		System.out.println("SAN_JUAN");		
+		System.out.println("SAN_LUIS");		
+		System.out.println("SANTA_CRUZ");		
+		System.out.println("SANTA_FE");		
+		System.out.println("SANTIAGO_DEL_ESTERO");		
+		System.out.println("TIERRA_DEL_FUEGO");		
+		System.out.println("TUCUMAN");		
 	}
 	
 	private static void realizarNuevaLlamada() {

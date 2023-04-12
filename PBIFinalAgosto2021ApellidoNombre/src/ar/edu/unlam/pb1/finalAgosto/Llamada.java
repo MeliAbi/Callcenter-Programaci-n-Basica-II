@@ -1,3 +1,4 @@
+
 package ar.edu.unlam.pb1.finalAgosto;
 
 public class Llamada {
@@ -10,7 +11,7 @@ public class Llamada {
 		this.setObservaciones(observaciones);
 	} //constructor
 
-	public boolean isFueExitosa() { //get
+	public boolean getFueExitosa() { //get
 		return fueExitosa;
 	}
 
@@ -25,33 +26,8 @@ public class Llamada {
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
+
+	public String toString () {
+		return "Observaciones: "+ this.observaciones;
+	}
 }
- /*First Of The Year (Equinox)
-Skrillex
-Baby you've got a nightmare
-Baby you've got a nightmare
-Baby you've got a nightmare
-You wait there now baby
-Baby you've got a nightmare
-Baby you've got a nightmare
-Baby you've got a nightmare
-
-Baby you've got a nightmare
-Baby you've got a nightmare
-Baby you've got a nightmare
-Call 911 now!!
-
-You can have yours
-You can have your
-Baby you've got a nightmare
-Baby you've got a nightmare
-Baby you've got a nightmare
-Call 911 now
-
-You can have yours
-Baby you've got a nightmare
-Baby you've got a nightmare
-Baby you've got a nightmare
-Baby you've got a nightmare
-Baby you've got a nightmare
-Baby you've got a nightmare*/

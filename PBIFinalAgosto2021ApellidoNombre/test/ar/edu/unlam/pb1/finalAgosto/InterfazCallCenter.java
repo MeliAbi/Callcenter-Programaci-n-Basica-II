@@ -24,6 +24,7 @@ public class InterfazCallCenter {
 				darDeAltaNuevoContacto(teclado, nuevaEmpresa);
 				break;
 			case NUEVA_LLAMADA:
+				realizarNuevaLlamada(teclado, nuevaEmpresa);
 				break;
 			case VER_INFO:
 				break;
@@ -147,7 +148,7 @@ public class InterfazCallCenter {
 		System.out.println("TUCUMAN");		
 	}
 	
-	private static void realizarNuevaLlamada() {
+	private static void realizarNuevaLlamada(Scanner teclado, Empresa nuevaEmpresa) {
 		/*
 		 * Busca un candidato,  muestra los datos del mismo, y permite almacenar el resultado de la llamada.
 		 * 
@@ -157,6 +158,26 @@ public class InterfazCallCenter {
 		 * un nuevo intento en el futuro).
 		 * c.	Observaciones: Texto libre donde el operador deja registro de lo conversado.
 		 */
+		String opcion="";
+		boolean resultado=false;
+		String observaciones="";
+		Contacto contacto=null;
+		
+		System.out.println("Realizando llamada...");
+		contacto=nuevaEmpresa.buscarCandidato();			//BUSCA CANDIDATO
+		do{
+			System.out.println("Llamada Exitosa? S/N");		//LO LLAMA Y ANOTA OBSERVACIONES
+			opcion=teclado.next().toUpperCase();
+		} while (opcion!="S"&&opcion!="N");
+		if (opcion=="S") {
+			resultado=true;
+		}
+		System.out.println("Observaciones:");
+		observaciones=teclado.next();
+		Llamada nuevaLlamada=new Llamada(resultado,observaciones);  //GUARDA LOS DATOS DE LA LLAMADA
+		contacto.registrarNuevaLlamada(nuevaLlamada);				// INTRODUCE ESTOS DATOS GUARDADOS EN EL CLIENTE LLAMADO
+		
+		
 	}
 	
 	private static void verInformacionDelContacto() {

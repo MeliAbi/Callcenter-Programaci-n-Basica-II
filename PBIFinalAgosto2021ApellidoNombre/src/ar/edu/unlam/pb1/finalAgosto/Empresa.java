@@ -59,7 +59,13 @@ public class Empresa {
 		/*
 		 * Determina si un c�digo postal est� dentro de la zona de cobertura
 		 */
-		return false;
+		boolean codigoCorrecto=false;
+		for (int i=0; i<cobertura.length;i++) {
+			if (cobertura[i]!=0&&codigoCorrecto==false&&cobertura[i]==codigoPostal) {
+				codigoCorrecto=true;
+			}
+		}
+		return codigoCorrecto;
 	}
 	
 	public Contacto buscarCandidato() {
@@ -67,10 +73,23 @@ public class Empresa {
 		 * Para determinar qu� contacto el sistema debe mostrar, se debe realizar la siguiente b�squeda:
 		 * 1.	El contacto NO debe ser cliente a�n.
 		 * 2.	El contacto desea ser llamado o al menos no inform� lo contrario.
-		 * 3.	El c�digo postal del contacto debe existir en las zonas de cobertura existente.
+		 * 3.	El c�digo postal del contacto debe existir en las zonas de cobertura existente. 
 		 * 4.	Del conjunto de contactos resultante se debe seleccionar aleatoriamente el pr�ximo llamado.
 		 */
+		Contacto candidatos[]=new Contacto[30];
+		int contador=0;								// VARIABLES LOCALES
+		Contacto candidatoAleatorio=null;
+		int numeroRandom=0;
+		
+		for (int i=0; i<contactosRegistrados.length;i++) {
+			if (contactosRegistrados[i]!=null&&contactosRegistrados[i].getCliente()==false&&contactosRegistrados[i].getDeseaSerLlamadoNuevamente()==true) {
+				candidatos[contador]=contactosRegistrados[i];
+				contador++;											//CONDICIONES PARA QUE EL CONTACTO PUEDA SER CANDIDATO A LLAMADO
+			}
+		}
+			numeroRandom=(int)(Math.random()*contador);
+			candidatoAleatorio= candidatos[numeroRandom];			//DE ESE VECTOR NUEVO DE CANDIDATOS, QUE ME MANDE UNO RANDOM
 
-		return null;
+		return candidatoAleatorio;									// DEVUELVE EL RANDOM ELEGIDO
 	}
-}
+	}

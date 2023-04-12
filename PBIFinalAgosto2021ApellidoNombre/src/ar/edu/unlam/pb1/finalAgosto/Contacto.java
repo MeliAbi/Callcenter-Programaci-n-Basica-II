@@ -25,6 +25,8 @@ public class Contacto {
 	Provincia provincia;
 	boolean cliente;
 	boolean deseaSerLlamadoNuevamente;
+	private Llamada llamadas[];
+	private static int cantidadMaximaDeLlamadas = 5;
 	
 	
 	public Contacto(String nombre, String apellido, double celular, String email, int codigoPostal,
@@ -38,11 +40,13 @@ public class Contacto {
 		this.provincia=provincia;
 		cliente=false;
 		deseaSerLlamadoNuevamente=true;
+		llamadas=new Llamada[cantidadMaximaDeLlamadas];
 	}
 	/*public boolean verificarNombreCorrecto (String nombre){
 		for con char at y que no tome como válidos los ascii diferentes a caracteres de letras
 			}*/
 	
+
 	public boolean esEmailValido(String email) {
 		/*
 		 * Eval�a si un String determinado puede ser almacenado como E-MAIL.
@@ -71,8 +75,19 @@ public class Contacto {
 		/*
 		 * Registra una nueva llamada asociada al contacto actual.
 		 */
+		for (int i = 0; i < llamadas.length; i++) {
+			if (llamadas[i] == null) {
+				llamadas[i] = nueva;}
+			
+			if (nueva.getFueExitosa()) {
+					this.setCliente(true);
+					this.setDeseaSerLlamadoNuevamente(false);
+				}
+				return true;
+			}
 		return false;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -80,13 +95,34 @@ public class Contacto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public boolean getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(boolean cliente) {
+		this.cliente = cliente;
+	}
+
+	public boolean getDeseaSerLlamadoNuevamente() {
+		return deseaSerLlamadoNuevamente;
+	}
+
+	public void setDeseaSerLlamadoNuevamente(boolean deseaSerLlamadoNuevamente) {
+		this.deseaSerLlamadoNuevamente = deseaSerLlamadoNuevamente;
+	}
 	public String toString() {
 		/*
 		 * Muestra los datos de un contacto, entre los que se debe incluir el registro de las llamadas realizadas.
 		*/
 
-		return "Email: "+this.email;
+		String mensaje = "Datos del contacto: "+"\nNombre y Apellido: " + nombre + " " + apellido 
+				+ "\nCelular: "+celular +"\nEmail: "+email +"\nDireccion: "+direccion
+				+ "\nProvincia: "+provincia+"\nCliente: "+ cliente +"\n";
+
+		for (int i = 0; i < cantidadMaximaDeLlamadas; i++) {
+			mensaje += llamadas[i].getObservaciones()+"\n";
+		}
+		return mensaje;
 	}
 
 	

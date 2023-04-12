@@ -27,6 +27,7 @@ public class InterfazCallCenter {
 				realizarNuevaLlamada(teclado, nuevaEmpresa);
 				break;
 			case VER_INFO:
+				verInformacionDelContacto(teclado, nuevaEmpresa);
 				break;
 			case SALIR:
 				System.out.println("Fin del programa");
@@ -94,6 +95,8 @@ public class InterfazCallCenter {
 		email=teclado.next();
 		System.out.println("Ingrese el Codigo Postal:");
 		codigoPostal=teclado.nextInt();
+		System.out.println("Ingrese la direccion");
+		direccion=teclado.next();
 		System.out.println("Ingrese la Localidad:");
 		localidad=teclado.next();
 		System.out.println("Ingrese la Provincia:");
@@ -101,7 +104,7 @@ public class InterfazCallCenter {
 		provinciaElegida=teclado.nextInt();
 		provincia=Provincia.values()[provinciaElegida-1];
 		
-		nuevo=new Contacto(nombre,apellido,celular,email,codigoPostal,localidad,provincia);
+		nuevo=new Contacto(nombre,apellido,celular,email,codigoPostal,direccion,localidad,provincia);
 		
 		if (nuevo.esEmailValido(email)==true) {
 			nuevaEmpresa.agregarNuevoContacto(nuevo);
@@ -180,9 +183,14 @@ public class InterfazCallCenter {
 		
 	}
 	
-	private static void verInformacionDelContacto() {
+	private static void verInformacionDelContacto(Scanner teclado, Empresa nuevaEmpresa) {
 		/*
 		 * Se visualiza la informaci�n del contacto, incluso el listado de las llamadas que se le hicieron
 		 */
+		String email="";
+		
+		System.out.println("Seleccione el E-mail del contacto");
+		email=teclado.next();
+		System.out.println("Contacto: " + nuevaEmpresa.getBuscarContacto(email) +"\nInformacion : "+nuevaEmpresa.getBuscarContacto(email).toString());
 	}
 }

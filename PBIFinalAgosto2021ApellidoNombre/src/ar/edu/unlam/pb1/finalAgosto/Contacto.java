@@ -29,13 +29,14 @@ public class Contacto {
 	private static int cantidadMaximaDeLlamadas = 5;
 	
 	
-	public Contacto(String nombre, String apellido, double celular, String email, int codigoPostal,
+	public Contacto(String nombre, String apellido, double celular, String email, int codigoPostal, String direccion,
 			String localidad, Provincia provincia) {
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.celular=celular;
 		this.email=email;
 		this.codigoPostal=codigoPostal;
+		this.direccion=direccion;
 		this.localidad=localidad;
 		this.provincia=provincia;
 		cliente=false;

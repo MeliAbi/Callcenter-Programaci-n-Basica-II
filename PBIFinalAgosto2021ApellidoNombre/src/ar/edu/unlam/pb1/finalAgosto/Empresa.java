@@ -92,4 +92,13 @@ public class Empresa {
 
 		return candidatoAleatorio;									// DEVUELVE EL RANDOM ELEGIDO
 	}
+	
+	public Contacto getBuscarContacto(String mail) {
+		for (int i = 0; i < contactosRegistrados.length; i++) {
+			if (contactosRegistrados[i].getEmail().equals(mail)) {
+				return contactosRegistrados[i];
+			}
+		}
+		return null;
+	}
 	}

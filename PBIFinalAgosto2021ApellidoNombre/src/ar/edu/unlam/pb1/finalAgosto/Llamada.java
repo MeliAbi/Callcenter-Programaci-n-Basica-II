@@ -15,6 +15,7 @@ public class Llamada {
 	}
 
 	public void setFueExitosa(boolean fueExitosa) {
+		//sarasa sarasa y sarasa
 		this.fueExitosa = fueExitosa;
 	}
 
